@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Works of Art</title>
+	<style type="text/css">
+		img {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			margin: 10px;
+			display: inline-block;
+		}
+	</style>
+</head>
+
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script language="javascript" src="artObject.js"></script>
+<script language="javascript" src="GalleryList.js"></script>
+
+<body>
+	<h2 style='padding:5px 5px;'>Homework 6 <br> Max Ramer <br> 10/22/19 <hr> </h2>
+</body>
+
+<script language="javascript">
+	buildGallery(GalleryList);
+	$(document).ready(function() {
+		for (i = 0; i < GalleryList.length; i++) {
+			$("#" + GalleryList[i].id).mouseenter(function() {
+				$("#preview").hide();
+				$("#preview").html("<img src='" + this.src + "' name='" + this.name + "Big' id='" + this.id + "' width='40%' height='40%'>");
+				$("#preview").fadeIn(300);
+			});
+			$(".galleryItem").click(function() {
+						$("#info").html("<h3 style='text-align:center'>Title: " + this.name + "<br> Price: $" + GalleryList[this.id].price + " million</h3>");
+						setTimeout(function() {
+							$("#info").html("&nbsp;");
+						},5000);
+
+				});
+			$("#" + GalleryList[i].id).mouseout(function() {
+				$("#preview").hide();
+			});
+		}
+	});
+</script>
+
+</html>
